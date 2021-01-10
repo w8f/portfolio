@@ -11,3 +11,15 @@ services:
     volumes:
       - "./front:/front"
     working_dir: /front
+
+  api:
+    build:
+      context: ./
+      dockerfile: ./docker/api/Dockerfile
+    # command: "go run main.go"
+    ports:
+      - "8080:8080"
+    tty: true
+    volumes:
+      - "./api:/go/src"
+    working_dir: /go/src
