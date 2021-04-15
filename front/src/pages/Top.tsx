@@ -8,9 +8,6 @@ const Top = () => {
   return (
     <div className={classes.main}>
       <h1>Top</h1>
-      <Button variant="outlined" color="primary">
-        hoge
-      </Button>
     </div>
   );
 };
