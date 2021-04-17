@@ -24,7 +24,7 @@ const Test: React.FC<TestProps> = (props) => {
           width={250}
           height={40}
           onClick={() => click()}
-          disabled={true}
+          disabled={false}
           variant={"outlined"}
         />
       </div>

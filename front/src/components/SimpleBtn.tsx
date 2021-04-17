@@ -9,7 +9,7 @@ type Props = ButtonProps & { title: string } & ShapeProps;
  * SimpleButton コンポーネント
  * @param props
  */
-const SimpleButton: React.FC<Props> = (props) => {
+const SimpleBtn: React.FC<Props> = (props) => {
   // style
   const useStyles = makeStyles({
     btn: {
@@ -26,10 +26,11 @@ const SimpleButton: React.FC<Props> = (props) => {
       className={classes.btn}
       variant={props.variant}
       onClick={props.onClick}
+      disabled={props.disabled}
     >
       {props.title}
     </Button>
   );
 };
 
-export default SimpleButton;
+export default SimpleBtn;
