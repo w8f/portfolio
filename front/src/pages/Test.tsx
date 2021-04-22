@@ -1,8 +1,14 @@
 import { makeStyles } from "@material-ui/core";
 import React from "react";
 import SimpleBtn from "../components/SimpleBtn";
+import axios from "axios";
 
 type TestProps = { sample: string };
+/**
+ * Test Page
+ * 技術検証モジュール
+ * @param props
+ */
 const Test: React.FC<TestProps> = (props) => {
   const useStyle = makeStyles({
     test: {
@@ -11,6 +17,10 @@ const Test: React.FC<TestProps> = (props) => {
   });
   const classes = useStyle();
   const click = () => {
+    axios
+      .get("http://localhost:8080")
+      .then((r) => console.log(r))
+      .catch((r) => console.log(r));
     console.log("on click");
   };
 
