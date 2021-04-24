@@ -13,9 +13,8 @@ RUN apk update \
     && go get -u github.com/joho/godotenv \
     && go get -u github.com/sirupsen/logrus \
     && go get -u github.com/valyala/fasthttp \
+    && go get -u github.com/lib/pq \
     && go get -u github.com/golang/mock/gomock \
     && go get -u github.com/golang/mock/mockgen \
     && go get -u github.com/google/wire/cmd/wire \
-    && go get -u gorm.io/gorm \
-    && go get -u gorm.io/driver/mysql \
     && go get -u github.com/cosmtrek/air

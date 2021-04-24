@@ -17,9 +17,32 @@ services:
       context: ./
       dockerfile: ./docker/api/Dockerfile
     command: "air"
+    env_file: .env
     ports:
       - "8080:8080"
     tty: true
     volumes:
       - "./api:/go/src"
     working_dir: /go/src
+    depends_on:
+      - db
+    networks:
+      - app-net
+
+  db:
+    build:
+      context: ./
+      dockerfile: ./docker/db/Dockerfile
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d
+    env_file: .env
+    tty: true
+    user: root
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
