@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, makeStyles } from "@material-ui/core";
-import { ShapeProps } from "./ShapeProps";
+import { ShapeProps } from "../models/ShapeProps";
 
 type ButtonProps = JSX.IntrinsicElements["button"];
 type Props = ButtonProps & { title: string } & ShapeProps;

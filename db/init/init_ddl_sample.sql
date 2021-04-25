@@ -7,3 +7,4 @@ CREATE TABLE Sample (
 );
 
 Insert into sample values(1,'sample花子',24,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
+Insert into sample values(2,'sample太郎',25,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);

@@ -1,16 +1,14 @@
 package main
 
 import (
-	"database/sql"
-	"fmt"
 	"log"
 	"net/http"
-	"os"
 	"time"
 
-	"github.com/joho/godotenv"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
+	"github.com/w8f/portfolio/domain"
+	"github.com/w8f/portfolio/infrastructure"
 
 	_ "github.com/lib/pq"
 )
@@ -27,55 +25,52 @@ type Sample struct {
 // Samples 構造体
 type Samples []Sample
 
-func connectPG() *sql.DB {
+func getSample() *domain.Response {
+	r := new(domain.Response)
+	var msgs []string
 
-	// .env 読み込み
-	err := godotenv.Load(".env")
+	db, err := infrastructure.ConnectPG()
 	if err != nil {
-		log.Fatal(err)
+		msgs = append(msgs, "DB接続エラー")
+		r.Error(msgs, nil)
 	}
 
-	PORT := os.Getenv("POSTGRES_PORT")
-	HOST := os.Getenv("HOST")
-	USER := os.Getenv("POSTGRES_USER")
-	DBUser := os.Getenv("POSTGRES_DATABASE")
-	PASSWORD := os.Getenv("POSTGRES_PASSWORD")
-
-	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
-		HOST, PORT, USER, PASSWORD, DBUser)
-
-	// DB接続
-	db, err := sql.Open("postgres", dsn)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return db
-}
-
-// sampleHandler 疎通確認
-func sampleHandler(c echo.Context) error {
-	db := connectPG()
 	query := "SELECT * FROM sample;"
-
 	rows, err := db.Query(query)
 	if err != nil {
 		log.Fatal("db query err: ", err)
 		panic("error!")
 	}
+
 	var smplList Samples
 	for rows.Next() {
 		var e Sample
-		rows.Scan(&e.ID, &e.Name, &e.Age, &e.CreateDate, &e.UpdateDate)
+
+		rows.Scan(
+			&e.ID,
+			&e.Name,
+			&e.Age,
+			&e.CreateDate,
+			&e.UpdateDate,
+		)
 		smplList = append(smplList, e)
 	}
 	log.Printf("%v", smplList)
+
+	msgs = append(msgs, "DB接続OK")
 	defer db.Close()
-	return c.JSON(http.StatusOK, smplList)
+	return r.Success(msgs, smplList)
+}
+
+// sampleHandler 疎通確認
+func sampleHandler(c echo.Context) error {
+	r := getSample()
+	return c.JSON(http.StatusOK, r)
 }
 
 func main() {
 	e := echo.New()
 	e.Use(middleware.CORS())
-	e.GET("/", sampleHandler)
+	e.GET("/sample", sampleHandler)
 	e.Logger.Fatal(e.Start(":8080"))
 }
