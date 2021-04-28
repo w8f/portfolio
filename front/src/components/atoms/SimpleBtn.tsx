@@ -13,10 +13,11 @@ const SimpleBtn: React.FC<Props> = (props) => {
   // style
   const useStyles = makeStyles({
     btn: {
-      textAlign: "center",
       color: props.color,
-      width: props.width,
       height: props.height,
+      marginTop: 12,
+      textAlign: "center",
+      width: props.width,
     },
   });
   const classes = useStyles();
@@ -24,9 +25,10 @@ const SimpleBtn: React.FC<Props> = (props) => {
   return (
     <Button
       className={classes.btn}
-      variant={props.variant}
-      onClick={props.onClick}
+      color={props.btnColor}
       disabled={props.disabled}
+      onClick={props.onClick}
+      variant={props.variant}
     >
       {props.title}
     </Button>

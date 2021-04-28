@@ -34,13 +34,13 @@ const Sample: React.FC<TestProps> = (props) => {
       <div className={classes.test}>
         <h2>Test Page</h2>
         <SimpleBtn
-          title={"OutLinedButtonのサンプル"}
           color={"#0dc374"}
-          width={250}
+          disabled={false}
           height={40}
           onClick={() => onClickSampleBtn()}
-          disabled={false}
+          title={"OutLinedButtonのサンプル"}
           variant={"outlined"}
+          width={250}
         />
         {hoge()}
       </div>

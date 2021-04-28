@@ -1,5 +1,5 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Top from "./components/pages/Top";
+import Top from "./components/pages/Top/Top";
 import Sample from "./components/pages/sample";
 
 /**

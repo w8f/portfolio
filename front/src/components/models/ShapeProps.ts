@@ -1,5 +1,6 @@
 export type ShapeProps = {
-  width: number;
+  btnColor?: "inherit" | "primary" | "secondary" | "default" | undefined;
   height: number;
   variant: "text" | "outlined" | "contained" | undefined;
+  width: number;
 };
