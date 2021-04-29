@@ -1,7 +1,11 @@
 import { makeStyles } from "@material-ui/core";
 import { useState } from "react";
 
-export const useLogin = () => {
+/**
+ * useUser
+ * ユーザ新規登録 / ユーザログイン処理
+ */
+export const useUser = () => {
   /** style */
   const useStyle = makeStyles({
     centering: {
@@ -27,6 +31,9 @@ export const useLogin = () => {
   /** state */
   const [userId, setUserId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [passwordCf, setPasswordCf] = useState<string>("");
+  const [userNm, setUserNm] = useState<string>("");
+  const [mail, setMail] = useState<string>("");
   const [isOpen, setOpen] = useState(false);
 
   /** action */
@@ -44,14 +51,25 @@ export const useLogin = () => {
     console.log("trial");
   };
 
+  /**
+   * ユーザ登録
+   */
+  const register = () => {
+    console.log("regist");
+  };
+
   return {
     classes,
     userId,
     setUserId,
+    setUserNm,
     setPassword,
+    setMail,
+    setPasswordCf,
     login,
     isOpen,
     setOpen,
     trialLogin,
+    register,
   };
 };

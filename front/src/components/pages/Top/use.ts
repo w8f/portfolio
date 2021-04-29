@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core";
+import { useState } from "react";
 
 const useTop = () => {
   // style
@@ -13,7 +14,13 @@ const useTop = () => {
     },
   });
   const classes = useStyles();
-  return { classes };
+
+  /** state */
+  const [open, setOpen] = useState(false);
+
+  /** action */
+  const handleClose = () => setOpen(false);
+  return { classes, open, setOpen, handleClose };
 };
 
 export default useTop;

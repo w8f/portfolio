@@ -3,23 +3,19 @@ import MultiCard from "../atoms/MultiCard";
 import SimpleBtn from "../atoms/SimpleBtn";
 import MultiDivider from "../atoms/MultiDivider";
 import MultiTextField from "../atoms/MultiTextField";
-import { useLogin } from "../../logics/actions/login";
+import { useUser } from "../../logics/actions/user";
 import UserIcon from "../atoms/UserIcon";
+
+type LoginProps = {
+  onRegistBtnClick: () => void;
+};
 
 /**
  * Login Top画面 ユーザ情報入力欄
  * @param props
  */
-const Login: React.FC = () => {
-  const {
-    classes,
-    isOpen,
-    login,
-    setUserId,
-    setPassword,
-    setOpen,
-    trialLogin,
-  } = useLogin();
+const Login: React.FC<LoginProps> = (props) => {
+  const { classes, login, setUserId, setPassword, trialLogin } = useUser();
 
   /**
    * ログインコンポーネント
@@ -36,7 +32,7 @@ const Login: React.FC = () => {
           setValue={(e) => setUserId(e.target.value)}
           sizeType={"small"}
           variant={"outlined"}
-          width={65}
+          width={260}
         ></MultiTextField>
         <br />
         <MultiTextField
@@ -45,7 +41,7 @@ const Login: React.FC = () => {
           setValue={(e) => setPassword(e.target.value)}
           sizeType={"small"}
           variant={"outlined"}
-          width={15}
+          width={260}
         ></MultiTextField>
         <br />
         <SimpleBtn
@@ -54,7 +50,7 @@ const Login: React.FC = () => {
           onClick={(e) => login()}
           title={"ログイン"}
           variant={"outlined"}
-          width={120}
+          width={260}
         ></SimpleBtn>
       </div>
 
@@ -63,10 +59,10 @@ const Login: React.FC = () => {
       <SimpleBtn
         color={"#00c4cc"}
         height={40}
-        onClick={(e) => setOpen(!isOpen)}
+        onClick={() => props.onRegistBtnClick()}
         title={"新規登録する"}
         variant={"text"}
-        width={120}
+        width={260}
       ></SimpleBtn>
     </div>
   );
@@ -83,7 +79,7 @@ const Login: React.FC = () => {
         onClick={(e) => trialLogin()}
         title={"お試しログイン"}
         variant={"outlined"}
-        width={140}
+        width={260}
       ></SimpleBtn>
     </div>
   );

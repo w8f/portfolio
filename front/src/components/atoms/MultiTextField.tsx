@@ -18,6 +18,7 @@ const MultiTextField: React.VFC<Props> = (props) => {
   const useStyle = makeStyles({
     root: {
       marginTop: 8,
+      width: props.width,
     },
   });
   const classes = useStyle();

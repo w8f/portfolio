@@ -24,6 +24,7 @@ const MultiCard: React.VFC<Props> = (props) => {
       padding: 15,
     },
     title: {
+      textAlign: "center",
       fontSize: props.titleFontSize,
     },
   });
