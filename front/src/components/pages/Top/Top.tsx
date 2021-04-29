@@ -2,7 +2,7 @@ import { Grid } from "@material-ui/core";
 import Login from "../../organisms/Login";
 import useTop from "../Top/use";
 import TransitionModal from "../../atoms/TransitionModal";
-import NewUser from "../../organisms/NewUser";
+import NewUser from "../../molecules/NewUser";
 
 /**
  * Top画面

@@ -1,12 +1,14 @@
 import React from "react";
 import SimpleBtn from "../atoms/SimpleBtn";
-import MultiCard from "../atoms/MultiCard";
 import MultiTextField from "../atoms/MultiTextField";
 import { useUser } from "../../logics/actions/user";
+
 /**
- * ユーザ新規登録
+ * NewUserRegist
+ * NewUser >> NewUserRegist
+ * ユーザ新規登録入力フォームコンポーネント
  */
-const NewUser: React.FC = () => {
+const NewUserRegist: React.FC = () => {
   const {
     classes,
     setUserId,
@@ -16,8 +18,7 @@ const NewUser: React.FC = () => {
     setPasswordCf,
     register,
   } = useUser();
-
-  const RegistForm: JSX.Element = (
+  return (
     <div className={classes.content}>
       <MultiTextField
         label={"ユーザID"}
@@ -52,6 +53,7 @@ const NewUser: React.FC = () => {
         width={260}
       ></MultiTextField>
       <MultiTextField
+        isPassword={true}
         label={"パスワード(確認用)"}
         setValue={(e) => setPasswordCf(e.target.value)}
         sizeType={"small"}
@@ -69,20 +71,6 @@ const NewUser: React.FC = () => {
       ></SimpleBtn>
     </div>
   );
-
-  return (
-    <>
-      <MultiCard
-        backgroundColor={"#FFFFFF"}
-        children={RegistForm}
-        height={400}
-        maxWidth={320}
-        title={"ユーザ登録"}
-        titleFontSize={24}
-        variant={"outlined"}
-      ></MultiCard>
-    </>
-  );
 };
 
-export default NewUser;
+export default NewUserRegist;
