@@ -4,6 +4,11 @@ import { useState } from "react";
 export const useLogin = () => {
   /** style */
   const useStyle = makeStyles({
+    centering: {
+      display: "flex",
+      justifyContent: "center",
+      textAlign: "center",
+    },
     content: {
       textAlign: "center",
     },

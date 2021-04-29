@@ -1,9 +1,9 @@
 import React from "react";
-import { Card, CardContent, makeStyles } from "@material-ui/core";
+import { Card, CardContent, CardProps, makeStyles } from "@material-ui/core";
 
-type CardProps = {
+type Props = CardProps & {
   backgroundColor: string;
-  content: JSX.Element;
+  content?: JSX.Element;
   height: number;
   maxWidth: number;
   title?: string;
@@ -11,7 +11,6 @@ type CardProps = {
   variant: "outlined" | "elevation" | undefined;
 };
 
-type Props = CardProps;
 /**
  * MultiCard 汎用カード
  * @param props
@@ -22,6 +21,7 @@ const MultiCard: React.VFC<Props> = (props) => {
       backgroundColor: props.backgroundColor,
       height: props.height,
       maxWidth: props.maxWidth,
+      padding: 15,
     },
     title: {
       fontSize: props.titleFontSize,
@@ -33,7 +33,7 @@ const MultiCard: React.VFC<Props> = (props) => {
       <>
         <Card className={classes.root} variant={props.variant}>
           <CardContent className={classes.title}>{props.title}</CardContent>
-          {props.content}
+          {props.children}
         </Card>
       </>
     );
@@ -41,7 +41,7 @@ const MultiCard: React.VFC<Props> = (props) => {
   return (
     <>
       <Card className={classes.root} variant={props.variant}>
-        {props.content}
+        {props.children}
       </Card>
     </>
   );
