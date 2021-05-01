@@ -1,3 +1,4 @@
+import axios from "axios";
 import { makeStyles } from "@material-ui/core";
 import { useState } from "react";
 
@@ -48,6 +49,7 @@ export const useUser = () => {
    * お試しログイン処理
    */
   const trialLogin = () => {
+    axios.get("http://localhost:8080/user/1").then((d) => console.log(d));
     console.log("trial");
   };
 
