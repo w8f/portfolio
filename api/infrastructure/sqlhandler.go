@@ -55,9 +55,35 @@ func (handler *SQLHandler) Query(statement string, args ...interface{}) (databas
 	return row, nil
 }
 
+// Exec 実装メソッド
+func (handler *SQLHandler) Exec(statement string, args ...interface{}) (database.Result, error) {
+	result, err := handler.Conn.Exec(statement, args...)
+	if err != nil {
+		return new(Result), err
+	}
+	res := new(Result)
+	res.Result = result
+	return res, nil
+}
+
 // SQLRow 構造体
 type SQLRow struct {
 	Rows *sql.Rows
+}
+
+// Result 構造体
+type Result struct {
+	Result sql.Result
+}
+
+// LastInsertId 実装
+// func (r Result) LastInsertId() (int64, error) {
+// 	return r.Result.LastInsertId()
+// }
+
+// RowsAffected 実装
+func (r Result) RowsAffected() (int64, error) {
+	return r.Result.RowsAffected()
 }
 
 // Scan 実装

@@ -42,7 +42,14 @@ export const useUser = () => {
    * ログイン処理
    */
   const login = () => {
-    console.log("login");
+    const param = {
+      userId: userId,
+      password: password,
+    };
+    axios
+      .post("http://localhost:8080/user/login", param)
+      .then((d) => console.log(d))
+      .catch((d) => console.log(d));
   };
 
   /**
@@ -57,7 +64,17 @@ export const useUser = () => {
    * ユーザ登録
    */
   const register = () => {
-    console.log("regist");
+    const param = {
+      userId: userId,
+      userNm: userNm,
+      mail: mail,
+      password: password,
+    };
+
+    axios
+      .post("http://localhost:8080/user/new", param)
+      .then((d) => console.log(d))
+      .catch((d) => console.log(d));
   };
 
   return {

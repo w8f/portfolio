@@ -4,4 +4,5 @@ package controllers
 type Context interface {
 	JSON() func(code int, i interface{}) error
 	Param() func(name string) string
+	FormValue() func(i interface{}) string
 }
