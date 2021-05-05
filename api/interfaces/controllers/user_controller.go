@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"net/http"
-	"strconv"
 
 	"github.com/w8f/portfolio/domain"
 
@@ -31,10 +30,7 @@ func NewUserController(SQLHandler database.SQLHandler) *UserController {
 // GetUserInfo ユーザ情報取得
 func (controller *UserController) GetUserInfo(c echo.Context) error {
 	var msgs []string
-	id, err := strconv.Atoi(c.Param("id"))
-	if err != nil {
-		return c.JSON(http.StatusBadRequest, map[string]string{"res": "cast err"})
-	}
+	id := c.Param("id")
 	user, err := controller.Interactor.UserByID(id)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, user.Exception(append(msgs, "failed"), err))

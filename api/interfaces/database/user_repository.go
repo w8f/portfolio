@@ -22,17 +22,19 @@ type UserRepository struct {
 }
 
 // FindByID ユーザ情報取得
-func (repo *UserRepository) FindByID(identifier int) (user domain.User, err error) {
+func (repo *UserRepository) FindByID(identifier string) (user domain.User, err error) {
 	row, err := repo.Query(FindByID, identifier)
 	defer row.Close()
 	if err != nil {
 		log.Fatal(err.Error())
 		return
 	}
-	row.Next()
-	if err = row.Scan(&user.ID, &user.UserID, &user.UserNm, &user.Mail); err != nil {
-		log.Fatal(err.Error())
-		return
+	for row.Next() {
+		if err = row.Scan(&user.ID, &user.UserID, &user.UserNm, &user.Mail); err != nil {
+			row.Close()
+			log.Fatal(err.Error())
+			return
+		}
 	}
 	return
 }
@@ -66,10 +68,11 @@ func (repo *UserRepository) Login(UserID string, PassWord string) (isSuccess boo
 		log.Fatal(err.Error())
 		return false, err
 	}
-	row.Next()
-	if err = row.Scan(&cnt.count); err != nil {
-		log.Fatal(err.Error())
-		return false, err
+	for row.Next() {
+		if err = row.Scan(&cnt.count); err != nil {
+			log.Fatal(err.Error())
+			return false, err
+		}
 	}
 	log.Println(cnt.count)
 	if cnt.count == 1 {

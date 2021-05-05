@@ -10,8 +10,8 @@ type UserInteractor struct {
 }
 
 // UserByID interactor
-func (interactor *UserInteractor) UserByID(identifer int) (u domain.User, err error) {
-	user, err := interactor.UserRepository.FindByID(identifer)
+func (interactor *UserInteractor) UserByID(userID string) (u domain.User, err error) {
+	user, err := interactor.UserRepository.FindByID(userID)
 	return user, err
 }
 

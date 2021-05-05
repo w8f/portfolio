@@ -14,7 +14,13 @@ type LoginProps = {
  * ログイン情報入力コンポーネント
  */
 const UserLogin: React.FC<LoginProps> = (props) => {
-  const { classes, login, setUserId, setPassword } = useUser();
+  const {
+    classes,
+    login,
+    isLoginBtnDisabled,
+    setUserId,
+    setPassword,
+  } = useUser();
   return (
     <div className={classes.content}>
       <div className={classes.centering}>
@@ -40,6 +46,7 @@ const UserLogin: React.FC<LoginProps> = (props) => {
         <br />
         <SimpleBtn
           color={"#00c4cc"}
+          disabled={isLoginBtnDisabled}
           height={40}
           onClick={(e) => login()}
           title={"ログイン"}

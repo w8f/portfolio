@@ -37,6 +37,19 @@ export const useUser = () => {
   const [mail, setMail] = useState<string>("");
   const [isOpen, setOpen] = useState(false);
 
+  /** 画面制御 */
+  // 新規登録ボタン・活性制御
+  const isNewBtnDisabled = !(
+    !!userId &&
+    !!userNm &&
+    !!password &&
+    !!passwordCf &&
+    !!mail
+  );
+
+  // ログインボタン・活性制御
+  const isLoginBtnDisabled = !(!!userId && !!password);
+
   /** action */
   /**
    * ログイン処理
@@ -56,7 +69,9 @@ export const useUser = () => {
    * お試しログイン処理
    */
   const trialLogin = () => {
-    axios.get("http://localhost:8080/user/1").then((d) => console.log(d));
+    axios
+      .get("http://localhost:8080/user/trial_user")
+      .then((d) => console.log(d));
     console.log("trial");
   };
 
@@ -81,14 +96,20 @@ export const useUser = () => {
     classes,
     userId,
     setUserId,
+    userNm,
     setUserNm,
-    setPassword,
+    mail,
     setMail,
+    password,
+    setPassword,
+    passwordCf,
     setPasswordCf,
     login,
     isOpen,
     setOpen,
     trialLogin,
     register,
+    isNewBtnDisabled,
+    isLoginBtnDisabled,
   };
 };

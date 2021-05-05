@@ -17,6 +17,7 @@ const NewUserRegist: React.FC = () => {
     setMail,
     setPasswordCf,
     register,
+    isNewBtnDisabled,
   } = useUser();
   return (
     <div className={classes.content}>
@@ -63,6 +64,7 @@ const NewUserRegist: React.FC = () => {
       <div className={classes.mt20}></div>
       <SimpleBtn
         color={"#00c4cc"}
+        disabled={isNewBtnDisabled}
         height={40}
         onClick={() => register()}
         title={"新規登録"}
