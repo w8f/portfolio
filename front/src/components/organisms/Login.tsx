@@ -23,7 +23,6 @@ const Login: React.FC<LoginProps> = (props) => {
         children={
           <UserLogin onRegistBtnClick={() => props.onRegistBtnClick()} />
         }
-        height={400}
         maxWidth={320}
         title={"Portfolio"}
         titleFontSize={24}

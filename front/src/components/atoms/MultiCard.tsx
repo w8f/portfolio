@@ -4,7 +4,7 @@ import { Card, CardContent, CardProps, makeStyles } from "@material-ui/core";
 type Props = CardProps & {
   backgroundColor: string;
   content?: JSX.Element;
-  height: number;
+  height?: number;
   maxWidth: number;
   title?: string;
   titleFontSize: number;

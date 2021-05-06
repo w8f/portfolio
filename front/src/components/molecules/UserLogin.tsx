@@ -16,6 +16,7 @@ type LoginProps = {
 const UserLogin: React.FC<LoginProps> = (props) => {
   const {
     classes,
+    errMsgs,
     login,
     isLoginBtnDisabled,
     setUserId,
@@ -44,6 +45,13 @@ const UserLogin: React.FC<LoginProps> = (props) => {
           width={260}
         ></MultiTextField>
         <br />
+        {errMsgs.map((err, idx) => {
+          return (
+            <li className={classes.errMsg} key={idx}>
+              {err}
+            </li>
+          );
+        })}
         <SimpleBtn
           color={"#00c4cc"}
           disabled={isLoginBtnDisabled}
